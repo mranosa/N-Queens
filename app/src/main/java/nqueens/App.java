@@ -3,18 +3,24 @@
  */
 package nqueens;
 
+import java.util.Set;
+
 public class App {
 	public String getGreeting() {
 		return "Hello World!";
 	}
 
 	public static void main(String[] args) {
-		System.out.println(new App().getGreeting());
-
 		if (args.length > 0) {
-			for (String arg : args) {
-				System.out.println("Got argument [" + arg + "]");
+			try {
+				NQueens nQueens = new NQueens(Integer.parseInt(args[0]), true);
+				Set<Board> solutions = nQueens.getSolutions();
+
+				System.out.println("Number of Solutions: " + solutions.size());
+			} catch (Exception e) {
+				System.out.println("Oops something went wrong. Check your args!");
 			}
+
 		}
 	}
 }

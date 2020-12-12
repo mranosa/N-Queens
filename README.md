@@ -10,10 +10,19 @@ Visit [Wikipedia] to know more.
 * [Gradle]
 
 ### Run tests
-./gradlew clean test
-
+```sh
+$ ./gradlew clean test
+```
 ### Run app
-./gradlew run --args="lorem ipsum dolor"
+```sh
+$ ./gradlew run --args=4
+```
+
+### Tested On
+
+* Ubuntu 18.04
+* Java openjdk version 11.0.9.1
+* Gradle 6.7
 
 [Wikipedia]: <http://ace.ajax.org>
 [Java]: <https://www.java.com/en/download/>

@@ -3,13 +3,36 @@
  */
 package nqueens;
 
+import static org.junit.Assert.assertTrue;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 public class AppTest {
-    @Test public void testAppHasAGreeting() {
-    	System.out.println("testAppHasAGreeting test");
-        App classUnderTest = new App();
-        assertNotNull("app should have a greeting", classUnderTest.getGreeting());
-    }
+	private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+	private final PrintStream originalOut = System.out;
+
+	@Before
+	public void setUpStreams() {
+		System.setOut(new PrintStream(outContent));
+	}
+
+	@After
+	public void restoreStreams() {
+		System.setOut(originalOut);
+	}
+
+	@Test
+	public void test_happy_case_input() {
+		String[] args = new String[1];
+		args[0] = "4";
+
+		App.main(args);
+
+		assertTrue("NumberofSolutions2".equals(outContent.toString().replaceAll("[^A-Za-z0-9]", "")));
+	}
 }
