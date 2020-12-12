@@ -1,12 +1,14 @@
 package nqueens;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class NQueens {
 
 	private Integer noOfQueens;
+	private Set<Board> solutions = new TreeSet<Board>();
 
 	/**
 	 * Hello NQueens Puzzle!
@@ -19,15 +21,58 @@ public class NQueens {
 		this.noOfQueens = noOfQueens;
 	}
 
-	public List getSolutions() {
-		if (noOfQueens < 1)
-			return new ArrayList<>();
+	/**
+	 * Returns solutions for N Queens challenge.
+	 * 
+	 * @return Set of board
+	 */
+	public Set<Board> getSolutions() {
+		if (noOfQueens > 0)
+			solve(noOfQueens, 0, solutions, new ArrayList<Queen>());
 
-		int[] answerCount = { 1, 0, 0, 2, 10, 4, 40, 92 };
-		String[] arr = new String[answerCount[noOfQueens - 1]];
-		Arrays.fill(arr, "");
+		return solutions;
+	}
 
-		return Arrays.asList(arr);
+	private void solve(int N, int row, Set<Board> solutions, List<Queen> queens) {
+		if (queens.size() == N) {
+			Set<Queen> copy = new TreeSet<Queen>(queens);
+			Board board = new Board(copy);
+
+			generateSolutions(solutions, board);
+		} else if (row < N) {
+			for (int column = 0; column < N; column++) {
+				Queen queen = new Queen(row, column);
+				Set<Queen> queenSet = new TreeSet<Queen>(queens);
+
+				if (queen.isSafeFrom(queenSet))
+					queens.add(queen);
+
+				solve(N, row + 1, solutions, queens);
+
+				queens.remove(queen);
+			}
+		}
+	}
+
+	private void generateSolutions(Set<Board> solutions, Board board) {
+		// 0°
+		solutions.add(board);
+		solutions.add(board.mirror());
+
+		// 90°
+		Board rotated = board.rotate();
+		solutions.add(rotated);
+		solutions.add(rotated.mirror());
+
+		// 180°
+		rotated = board.rotate();
+		solutions.add(rotated);
+		solutions.add(rotated.mirror());
+
+		// 270°
+		rotated = board.rotate();
+		solutions.add(rotated);
+		solutions.add(rotated.mirror());
 	}
 
 }
