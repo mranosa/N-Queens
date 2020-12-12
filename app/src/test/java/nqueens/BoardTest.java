@@ -108,6 +108,14 @@ public class BoardTest {
 
 		assertFalse(board.hasCollinear());
 
+		// positive case
+		// A1, C2 and E3 == [[0:0], [2:1], [4:3]]
+		queens = new TreeSet<Queen>(
+				Arrays.asList(new Queen(0, 0), new Queen(1, 1), new Queen(2, 1), new Queen(3, 2), new Queen(4, 3)));
+		board = new Board(queens);
+
+		assertTrue(board.hasCollinear());
+
 		// [[0:4], [1:1], [2:3], [3:5], [4:7], [5:2], [6:0], [7:6]]
 		queens = new TreeSet<Queen>(Arrays.asList(new Queen(0, 4), new Queen(1, 1), new Queen(2, 3), new Queen(3, 5),
 				new Queen(4, 7), new Queen(5, 2), new Queen(6, 0), new Queen(7, 6)));
@@ -115,6 +123,7 @@ public class BoardTest {
 
 		assertTrue(board.hasCollinear());
 
+		// negative case
 		// [[0:5], [1:1], [2:6], [3:0], [4:3], [5:7], [6:4], [7:2]]
 		queens = new TreeSet<Queen>(Arrays.asList(new Queen(0, 5), new Queen(1, 1), new Queen(2, 6), new Queen(3, 0),
 				new Queen(4, 3), new Queen(5, 7), new Queen(6, 4), new Queen(7, 2)));

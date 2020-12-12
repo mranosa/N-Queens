@@ -14,7 +14,7 @@ public class Board implements Comparable<Board> {
 	 * @param queens Set of queens in the board
 	 */
 	public Board(Set<Queen> queens) {
-		this.queens = queens;
+		this.queens = null == queens ? new TreeSet<Queen>() : new TreeSet<Queen>(queens);
 	}
 
 	/**
@@ -45,7 +45,7 @@ public class Board implements Comparable<Board> {
 	 * Shows board configuration.
 	 */
 	public void display() {
-		int[][] matrix = mirrorMatrix(toMatrix());
+		int[][] matrix = toMatrix();
 		for (int i = 0; i < matrix.length; i++) {
 			for (int j = 0; j < matrix[i].length; j++) {
 				if (matrix[i][j] == 1) {
