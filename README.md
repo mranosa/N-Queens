@@ -9,6 +9,12 @@ Visit [Wikipedia] to know more.
 * [Java]
 * [Gradle]
 
+### Run tests
+./gradlew clean test
+
+### Run app
+./gradlew run --args="lorem ipsum dolor"
+
 [Wikipedia]: <http://ace.ajax.org>
 [Java]: <https://www.java.com/en/download/>
 [Gradle]: <https://gradle.org/install/>
