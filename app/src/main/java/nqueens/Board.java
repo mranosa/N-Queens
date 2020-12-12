@@ -58,6 +58,34 @@ public class Board implements Comparable<Board> {
 		}
 	}
 
+	/**
+	 * Checks if Queens configuration in Board has 3 in same line.
+	 * 
+	 * @return boolean true if board has 3 queens same in line, false if none
+	 */
+	// https://stackoverflow.com/questions/39996798/n-queens-with-no-3-queens-on-same-line
+	public boolean hasCollinear() {
+		if (null == queens)
+			return false;
+
+		for (Queen x : queens) {
+			for (Queen y : queens) {
+				for (Queen z : queens) {
+					if (x.equals(y) || x.equals(z) || y.equals(z))
+						continue;
+
+					boolean isCollinear = (x.getColumn() - y.getColumn())
+							* (x.getRow() - z.getRow()) == (x.getColumn() - z.getColumn()) * (x.getRow() - y.getRow());
+
+					if (isCollinear)
+						return true;
+				}
+			}
+		}
+
+		return false;
+	}
+
 	private int[][] toMatrix() {
 		int[][] matrix = new int[queens.size()][queens.size()];
 		// https://stackoverflow.com/questions/7118178/arrays-fill-with-multidimensional-array-in-java

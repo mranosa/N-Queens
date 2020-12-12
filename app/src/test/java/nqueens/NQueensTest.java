@@ -120,4 +120,46 @@ public class NQueensTest {
 		assertTrue(solutions.contains(solution.rotate().rotate().rotate().mirror()));
 	}
 
+	/**
+	 * Ensure all solution variants are correct when no 3 queens in same line is
+	 * active
+	 */
+	@Test
+	public void test_correct_solution_variants_when_no_collinear() {
+		int noOfQueens = 8;
+		NQueens nQueens = new NQueens(noOfQueens, true);
+		Set<Board> solutions = nQueens.getSolutions();
+
+		// [[0:5], [1:3], [2:0], [3:4], [4:7], [5:1], [6:6], [7:2]] in 8
+		Board solution = new Board(new TreeSet<Queen>(Arrays.asList(new Queen(0, 5), new Queen(1, 3), new Queen(2, 0),
+				new Queen(3, 4), new Queen(4, 7), new Queen(5, 1), new Queen(6, 6), new Queen(7, 2))));
+
+		// should have correct solution size
+		assertTrue(92 != solutions.size());
+		assertEquals(8, solutions.size());
+
+		// 0° and mirrored solution should exist
+		assertTrue(solutions.contains(solution));
+		assertTrue(solutions.contains(solution.mirror()));
+
+		// 90° and mirrored solution should exist
+		assertTrue(solutions.contains(solution.rotate()));
+		assertTrue(solutions.contains(solution.rotate().mirror()));
+
+		// 180° and mirrored solution should exist
+		assertTrue(solutions.contains(solution.rotate().rotate()));
+		assertTrue(solutions.contains(solution.rotate().rotate().mirror()));
+
+		// 270° and mirrored solution should exist
+		assertTrue(solutions.contains(solution.rotate().rotate().rotate()));
+		assertTrue(solutions.contains(solution.rotate().rotate().rotate().mirror()));
+
+		// solution with 3 queens in line should not exist
+		Set<Queen> queens = new TreeSet<Queen>(Arrays.asList(new Queen(0, 4), new Queen(1, 1), new Queen(2, 3),
+				new Queen(3, 5), new Queen(4, 7), new Queen(5, 2), new Queen(6, 0), new Queen(7, 6)));
+		solution = new Board(queens);
+
+		assertFalse(solutions.contains(solution));
+	}
+
 }

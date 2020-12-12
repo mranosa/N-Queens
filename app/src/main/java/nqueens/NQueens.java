@@ -9,6 +9,7 @@ public class NQueens {
 
 	private Integer noOfQueens;
 	private Set<Board> solutions = new TreeSet<Board>();
+	private boolean noCollinear = false;
 
 	/**
 	 * Hello NQueens Puzzle!
@@ -19,6 +20,19 @@ public class NQueens {
 	 */
 	public NQueens(Integer noOfQueens) {
 		this.noOfQueens = noOfQueens;
+	}
+
+	/**
+	 * Hello NQueens Puzzle!
+	 * 
+	 * @param noOfQueens  total number of queens in board
+	 * @param noCollinear set to true if collinear queens is not allowed
+	 * @see <a href="https://en.wikipedia.org/wiki/Eight_queens_puzzle">Eight Queens
+	 *      Wiki</a>
+	 */
+	public NQueens(int noOfQueens, boolean noCollinear) {
+		this.noOfQueens = noOfQueens;
+		this.noCollinear = noCollinear;
 	}
 
 	/**
@@ -37,6 +51,10 @@ public class NQueens {
 		if (queens.size() == N) {
 			Set<Queen> copy = new TreeSet<Queen>(queens);
 			Board board = new Board(copy);
+			boolean no3QueensInLine = noCollinear == true && board.hasCollinear();
+
+			if (no3QueensInLine)
+				return;
 
 			generateSolutions(solutions, board);
 		} else if (row < N) {
