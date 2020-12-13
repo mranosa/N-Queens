@@ -62,10 +62,10 @@ public class NQueens {
 				Queen queen = new Queen(row, column);
 				Set<Queen> queenSet = new TreeSet<Queen>(queens);
 
-				if (queen.isSafeFrom(queenSet))
+				if (queen.isSafeFrom(queenSet)) {
 					queens.add(queen);
-
-				solve(N, row + 1, solutions, queens);
+					solve(N, row + 1, solutions, queens);
+				}
 
 				queens.remove(queen);
 			}
