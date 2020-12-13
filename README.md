@@ -28,13 +28,13 @@ $ ./gradlew run --args=4
 
 It has been a while since I have written in Java, so this challenge for me was a great way to brush up on my skills. Feedback for things to remove and improve are very much welcome, you can do a PR or email me at ken.ranosa@gmail.com with the subject of "N-Queen Code Feedback".
 
-This is the first time that I have bumped into N Queens Challenge. So along the way, I learned how to use recursive backtracking. I am self-taught and don't have a strong formal education concerning data structures and algorithms. My learnings are mainly done once the need or idea arises, while on the job, or during personal projects.
+This is the first time that I have bumped into the N Queens Challenge. So along the way, I learned how to use recursive backtracking. I am self-taught and don't have a strong formal education concerning data structures and algorithms. My learnings are mainly done once the need or idea arises, while on the job, or during personal projects.
 
 With regards to solving the challenge. I first researched the problem and found that this is quite a popular puzzle. It also introduced me to backtracking. 
 
-My mind initially got bogged down visualizing how the backtracking recursion works, but before I drop down the rabbit hole, I took a step back. I changed my focus again on what needs to be delivered and drafted the specs to consider this challenge done. I based the specs on the [Wikipedia] link and drafted a list of basic integration test cases.
+My mind initially got bogged down visualizing how the backtracking recursion works, but before I dropped down the rabbit hole, I took a step back. I changed my focus again on what needs to be delivered and drafted the specs to consider this challenge done. I based the specs on the [Wikipedia] link and drafted a list of basic integration test cases.
 
-This is my general approach to how I do things. Draft the essential test cases, do test-driven development, and let the tests guide the code design. If it is not in the tests, it is not essential. During the process, the tests have shown the need to return a set of Boards as solutions. Each board is one solution that has a unique configuration for a set of Queens. The Queen's properties are its coordinates on the board, and the behaviors are mainly checks to see if it has neighbors in the same column, row, or diagonally.
+This is my general approach to how I do things. Draft the essential test cases, do test-driven development, and let the tests guide the code design. If it is not in the tests, it is not essential. During the process, the tests have shown the need to return a set of Boards as solutions. Each board is one solution that has a unique configuration for a set of Queens. The Queen's properties are its coordinates on the board, and the behaviors are mainly checked to see if it has neighbor/s in the same column, row, diagonally, and if it is safe from them.
 
 Once all tests pass, it is done. If bugs are found or there is a need for optimization, I only handle them once the need arises. Cheers!
 
