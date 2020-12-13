@@ -13,6 +13,21 @@ import org.junit.Test;
 public class QueenTest {
 
 	@Test
+	public void test_is_same_row() {
+		// positive case
+		Queen neighbor = new Queen(0, 0);
+		Queen queen = new Queen(0, 1);
+
+		assertTrue(queen.isSameRow(neighbor));
+
+		// negative case
+		neighbor = new Queen(0, 1);
+		queen = new Queen(1, 0);
+
+		assertFalse(queen.isSameRow(neighbor));
+	}
+
+	@Test
 	public void test_is_same_column() {
 		// positive case
 		Queen neighbor = new Queen(0, 0);
@@ -64,6 +79,11 @@ public class QueenTest {
 
 		neighbor = new Queen(0, 1);
 		queen = new Queen(1, 1);
+
+		assertFalse(queen.isSafeFrom(neighbor));
+
+		neighbor = new Queen(0, 0);
+		queen = new Queen(0, 1);
 
 		assertFalse(queen.isSafeFrom(neighbor));
 	}

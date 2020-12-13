@@ -41,7 +41,7 @@ public class Queen implements Comparable<Queen> {
 	 * @return true if safe, false if not
 	 */
 	public boolean isSafeFrom(Queen neighbor) {
-		return !isDiagonal(neighbor) && !isSameColumn(neighbor);
+		return !isDiagonal(neighbor) && !isSameColumn(neighbor) && !isSameRow(neighbor);
 	}
 
 	/**
@@ -59,13 +59,23 @@ public class Queen implements Comparable<Queen> {
 	}
 
 	/**
-	 * Checks if queen is in line with neighbor
+	 * Checks if queen is in same column with neighbor
 	 * 
 	 * @param neighbor nearby queen to be checked against
-	 * @return true if in line, false if not
+	 * @return true if in same column, false if not
 	 */
 	public boolean isSameColumn(Queen neighbor) {
-		return column == neighbor.column;
+		return column == neighbor.getColumn();
+	}
+
+	/**
+	 * Checks if queen is in same row with neighbor
+	 * 
+	 * @param neighbor nearby queen to be checked against
+	 * @return true if in same row, false if not
+	 */
+	public boolean isSameRow(Queen neighbor) {
+		return row == neighbor.getRow();
 	}
 
 	@Override

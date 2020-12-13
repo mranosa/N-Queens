@@ -50,13 +50,16 @@ public class NQueensTest {
 					if (i == j)
 						continue;
 					// should have no two queens in the same row
-					assertFalse(i.getRow() == j.getRow());
+					assertFalse(i.isSameRow(j));
 
 					// should have no two queens in the same column
 					assertFalse(i.isSameColumn(j));
 
 					// should have no two queens diagonal each other
 					assertFalse(i.isDiagonal(j));
+
+					// should ensure that queen is safe from current neighbor
+					assertTrue(i.isSafeFrom(j));
 				}
 			}
 		}
